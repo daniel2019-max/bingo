@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <div class="float-left">
+        <h5 class="modal-title text-dark">
+            Agregar una cartilla de bingo
+        </h5>
+    </div>
+    <div class="float-right">
+        <i class="bi bi-x-lg"
+           (click)="closeModal()"
+           style="cursor: pointer">
+        </i>
+    </div>
+</div>
+<div class="modal-body" [formGroup]="cardFG">
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Propietario:</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control" formControlName="user">
+        </div>
+        <label class="col-md-2 col-form-label">Color card:</label>
+        <div class="col-md-2">
+            <input type="color" class="form-control" formControlName="backgroundColor">
+        </div>
+        <div class="col-md-3">
+            <button type="button"
+                    placement="bottom"
+                    ngbTooltip="Generar nuevos numeros"
+                    (click)="generateNumberOfLetter()"
+                    class="btn btn-success">
+                <i class="bi bi-arrow-counterclockwise"> Generar</i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <app-bingo-card [contentCard]="contentCard"></app-bingo-card>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button (click)="closeModal()"
+            class="btn border">
+        Cancelar
+    </button>
+    <button (click)="saveCard()"
+            [disabled]="cardFG.invalid"
+            class="btn btn-primary">
+        Agregar
+    </button>
+</div>

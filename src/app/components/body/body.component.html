@@ -1,30 +1,82 @@
 <div class="container-fluid mt-2">
-  <div class="row">
-    <div class="col-md-10">
-
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card border border-primary">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="btn-group mt-3" role="group" aria-label="Basic mixed styles example">
+                                <button type="button"
+                                        placement="bottom"
+                                        ngbTooltip="Iniciar el juego"
+                                        (click)="startGame()"
+                                        [disabled]="gameStarted && listNumber.length!==leftNumber"
+                                        class="btn btn-success btn-sm">
+                                    <i class="bi bi-play"> INICIAR</i>
+                                </button>
+                                <button type="button"
+                                        placement="bottom"
+                                        ngbTooltip="Parar el juego"
+                                        (click)=" this.gameStarted = false;"
+                                        [disabled]="(!gameStarted) || (listNumber.length===cantNumbers)"
+                                        class="btn btn-danger btn-sm">
+                                    <i class="bi bi-pause">PAUSAR</i>
+                                </button>
+                                <button type="button"
+                                        placement="bottom"
+                                        ngbTooltip="Reiniciar el juego"
+                                        (click)="restartGame()"
+                                        class="btn btn-primary btn-sm">
+                                    <i class="bi bi-arrow-counterclockwise">
+                                        REINICIAR
+                                    </i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-1 align-content-center">
+                            <h1 class="text-center "
+                                placement="bottom"
+                                ngbTooltip="Ultimo número que acaba de salir"
+                                *ngIf="numberNew!==-1">
+                                {{numberNew}}
+                            </h1>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="text-center text-primary">
+                                Lista de números que ya han salido
+                            </p>
+                            <textarea class="form-control"
+                                      [formControl]="textArea"
+                                      rows="2">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 text-center justify-content-center">
+            <div class="btn-group mt-3"
+                 role="group"
+                 aria-label="Basic mixed styles example">
+                <button type="button"
+                        (click)="addCard()"
+                        placement="left"
+                        ngbTooltip="Agregar una nueva cartilla"
+                        class="btn btn-info mt-4">
+                    <i class="bi bi-plus-lg"> Agregar</i>
+                </button>
+                <button type="button"
+                        placement="bottom"
+                        ngbTooltip="Configurar"
+                        class="btn btn-dark mt-4">
+                    <i class="bi bi-gear"> Configurar</i>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-2 text-center">
-      <button type="button"
-              class="btn btn-success">
-        <i class="bi bi-plus-lg"> Agregar cartilla</i>
-
-      </button>
+    <div class="row mt-2"> <!--Contents of the bingo cards -->
+        <div class="col-md-3" *ngFor="let card of cardList">
+            <app-bingo-card [contentCard]="card"></app-bingo-card>
+        </div>
     </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col-md-3">
-      <app-bingo-card [cardNumber]="7"></app-bingo-card>
-    </div>
-
-    <div class="col-md-3">
-      <app-bingo-card [cardNumber]="7"></app-bingo-card>
-    </div>
-    <div class="col-md-3">
-      <app-bingo-card [cardNumber]="7"></app-bingo-card>
-    </div>
-    <div class="col-md-3">
-      <app-bingo-card [cardNumber]="7"></app-bingo-card>
-    </div>
-  </div>
-
 </div>

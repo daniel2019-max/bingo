@@ -1,16 +1,16 @@
 export interface CardInterface {
-  user: string;
-  creationDate: string;
-  backgroundColor: string;
-  letterB: LetterInterface[];
-  letterI: LetterInterface[];
-  letterN: LetterInterface[];
-  letterG: LetterInterface[];
-  letterO: LetterInterface[];
+    user: string;
+    creationDate: string;
+    backgroundColor: string;
+    letterB: LetterInterface[];
+    letterI: LetterInterface[];
+    letterN: LetterInterface[];
+    letterG: LetterInterface[];
+    letterO: LetterInterface[];
+    cardNumber: number;
 }
 
 export interface LetterInterface {
-  value: number;
-  background: string;
-
+    value: number | string;
+    background: string;
 }

@@ -1,30 +1,39 @@
-<div class="card">
-  <div class="card-header text-center">
-    <b class=""> Cartilla N° {{cardNumber}}</b>
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <caption>Usuario daniel</caption>
-        <thead>
-        <tr>
-          <th class="text-center">B</th>
-          <th class="text-center">I</th>
-          <th class="text-center">N</th>
-          <th class="text-center">G</th>
-          <th class="text-center">O</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="text-center" style="background: rgba(163,255,51,0.6)">7</td>
-          <td class="text-center">7</td>
-          <td class="text-center">7</td>
-          <td class="text-center">7</td>
-          <td class="text-center">7</td>
-        </tr>
-        </tbody>
-      </table>
+<div class="card" [ngStyle]="{'background':contentCard?.backgroundColor}">
+    <div class="card-header text-center">
+        <b class=""> Cartilla N° {{contentCard?.cardNumber}}</b>
     </div>
-  </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered border-primary">
+                <caption>{{contentCard?.user}}</caption>
+                <thead>
+                <tr>
+                    <th class="text-center bg-dark text-white" *ngFor="let letter of headerCard">
+                        {{letter}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <tr *ngFor="let item of contentCard?.letterB; let i = index">
+                    <td class="text-center" [ngStyle]="{'background':contentCard?.letterB[i]?.background}">
+                        {{contentCard?.letterB[i].value}}
+                    </td>
+                    <td class="text-center" [ngStyle]="{'background':contentCard?.letterI[i]?.background}">
+                        {{contentCard?.letterI[i].value}}
+                    </td>
+                    <td class="text-center" [ngStyle]="{'background':contentCard?.letterN[i]?.background}">
+                        {{contentCard?.letterN[i].value}}
+                    </td>
+                    <td class="text-center" [ngStyle]="{'background':contentCard?.letterG[i]?.background}">
+                        {{contentCard?.letterG[i].value}}
+                    </td>
+                    <td class="text-center" [ngStyle]="{'background':contentCard?.letterO[i]?.background}">
+                        {{contentCard?.letterO[i].value}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

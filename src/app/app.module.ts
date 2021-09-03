@@ -7,19 +7,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BodyComponent } from './components/body/body.component';
 import { BingoCardComponent } from './components/bingo-card/bingo-card.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { ModalSettingComponent } from './components/modals/modal-setting/modal-setting.component';
+import { ModalAddCardComponent } from './components/modals/modal-add-card/modal-add-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BodyComponent,
-    BingoCardComponent
+    BingoCardComponent,
+    ModalSettingComponent,
+    ModalAddCardComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
