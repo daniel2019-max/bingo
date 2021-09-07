@@ -101,6 +101,7 @@ export class ModalAddCardComponent implements OnInit, OnDestroy {
             letterI: this.letterI,
             letterN: this.letterN,
             letterO: this.letterO,
+            trappedNumber: 0,
             user: this.valueFC('user')
         };
     }
@@ -116,6 +117,7 @@ export class ModalAddCardComponent implements OnInit, OnDestroy {
             letterI: this.letterI,
             letterN: this.letterN,
             letterO: this.letterO,
+            trappedNumber: 0,
             user: this.valueFC('user')
         };
         this.activeModal.close(this.contentCard);

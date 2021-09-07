@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered border-primary">
-                <caption>{{contentCard?.user}}</caption>
+                <caption *ngIf="contentCard.user">Propietario :{{contentCard?.user}}</caption>
                 <thead>
                 <tr>
                     <th class="text-center bg-dark text-white" *ngFor="let letter of headerCard">

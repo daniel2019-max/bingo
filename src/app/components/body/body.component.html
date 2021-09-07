@@ -59,7 +59,7 @@
                  role="group"
                  aria-label="Basic mixed styles example">
                 <button type="button"
-                        (click)="addCard()"
+                        (click)="openModalAddCard()"
                         placement="left"
                         ngbTooltip="Agregar una nueva cartilla"
                         class="btn btn-info mt-4">
@@ -68,15 +68,21 @@
                 <button type="button"
                         placement="bottom"
                         ngbTooltip="Configurar"
+                        (click)="openModalSettings()"
                         class="btn btn-dark mt-4">
                     <i class="bi bi-gear"> Configurar</i>
                 </button>
             </div>
         </div>
     </div>
-    <div class="row mt-2"> <!--Contents of the bingo cards -->
-        <div class="col-md-3" *ngFor="let card of cardList">
-            <app-bingo-card [contentCard]="card"></app-bingo-card>
+    <div class="row"> <!--Contents of the bingo cards -->
+        <div class="col-md-3 mt-2" *ngFor="let card of cardList">
+            <app-bingo-card [contentCard]="card"
+                            [numberJustCameOut]="numberNew"
+                            (message)="callBingo($event)"
+            >
+
+            </app-bingo-card>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ export interface CardInterface {
     letterG: LetterInterface[];
     letterO: LetterInterface[];
     cardNumber: number;
+    trappedNumber: number;
 }
 
 export interface LetterInterface {

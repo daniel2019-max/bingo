@@ -4,6 +4,7 @@ import {CardInterface} from '../models/card.interface';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalAddCardComponent} from '../modals/modal-add-card/modal-add-card.component';
 import {RandomNumberService} from '../../services/random-number.service';
+import {ModalSettingComponent} from '../modals/modal-setting/modal-setting.component';
 
 @Component({
     selector: 'app-body',
@@ -20,7 +21,7 @@ export class BodyComponent implements OnInit {
     /** amount of number generated */
     cantNumbers = 75;
     /** seconds between each launch */
-    secondLaunch = 0.001;
+    secondLaunch = 0.1;
     /** form control of the text area */
     textArea: FormControl = new FormControl({value: '', disabled: true});
     /** amount of numbers left to come out */
@@ -48,8 +49,8 @@ export class BodyComponent implements OnInit {
             numberNew = this.numberService.getNewRandomInt(1, this.cantNumbers + 1);
         }
         if (this.gameStarted && this.listNumber.indexOf(numberNew) === -1) {
-            this.leftNumber = this.leftNumber - 1;
             this.numberNew = numberNew;
+            this.leftNumber = this.leftNumber - 1;
             this.listNumber.push(numberNew);
             this.textArea.setValue(this.textArea.value + ' ' + numberNew);
         }
@@ -75,10 +76,21 @@ export class BodyComponent implements OnInit {
         this.numberNew = -1;
         this.leftNumber = 75;
         this.textArea.reset('');
+        this.cardList.forEach((cardBingo) => {
+            cardBingo.trappedNumber = 0;
+
+            for (let i = 0; i < cardBingo.letterI.length; i++) {
+                cardBingo.letterB[i].background = '#FFFFFF';
+                cardBingo.letterI[i].background = '#FFFFFF';
+                cardBingo.letterN[i].background = '#FFFFFF';
+                cardBingo.letterG[i].background = '#FFFFFF';
+                cardBingo.letterO[i].background = '#FFFFFF';
+            }
+        });
     }
 
     /** Add Card */
-    addCard(): void {
+    openModalAddCard(): void {
         const modalRef: NgbModalRef = this.modalService.open(ModalAddCardComponent,
             {
                 size: 'lg',
@@ -87,12 +99,35 @@ export class BodyComponent implements OnInit {
         modalRef.componentInstance.nroCard = this.cardList.length > 0 ? this.cardList.length + 1 : 1;
         modalRef.result.then((result) => {
             if (result !== 'close') {
-                // this.cardList.push(result);
                 this.cardList = [result, ...this.cardList];
             }
         }).catch((error) => {
             console.log(error);
         });
+    }
+
+    /** Setting the game */
+    openModalSettings(): void {
+        const modalRef: NgbModalRef = this.modalService.open(ModalSettingComponent,
+            {
+                size: 'lg',
+                backdrop: 'static'
+            });
+        // modalRef.componentInstance.nroCard = this.cardList.length > 0 ? this.cardList.length + 1 : 1;
+        modalRef.result.then((result) => {
+            if (result !== 'close') {
+                this.secondLaunch = result['secondsFC'];
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    callBingo(event: string) {
+        setTimeout(() => {
+            alert(event);
+            this.gameStarted = false;
+        }, 10);
 
     }
 

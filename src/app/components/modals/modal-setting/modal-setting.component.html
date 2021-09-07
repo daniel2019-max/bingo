@@ -1,1 +1,68 @@
-<p>modal-setting works!</p>
+<div class="modal-header">
+    <div class="float-left">
+        <h5 class="modal-title text-dark">
+            Configuración
+        </h5>
+    </div>
+    <div class="float-right">
+        <i class="bi bi-x-lg"
+           (click)="closeModal()"
+           style="cursor: pointer">
+        </i>
+    </div>
+</div>
+<div class="modal-body" [formGroup]="settingFG">
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label for="customRange2" class="form-label">
+                Tiempo en cada lanzamiento
+            </label>
+        </div>
+        <div class="col-md-6">
+            <input type="range"
+                   class="form-range w-100 h-75"
+                   formControlName="secondsFC"
+                   min="1"
+                   max="40"
+                   id="customRange2">
+        </div>
+        <div class="col-md-2">
+            <h6>{{valueFC('secondsFC')}} segundos</h6>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-12">
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       formControlName="winners"
+                       id="winner">
+                <label class="form-check-label w-100 h-100" for="winner">
+                    Puede haber más de dos ganadores
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       formControlName="removeCardFC"
+                       id="reinicio">
+                <label class="form-check-label w-100 h-100" for="reinicio">
+                    Remover las cartillas existentes cuando se reinicia el juego
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button (click)="closeModal()"
+            class="btn border">
+        Cancelar
+    </button>
+    <button (click)="saveSettings()"
+            [disabled]="settingFG.invalid"
+            class="btn btn-primary">
+        Agregar
+    </button>
+</div>
