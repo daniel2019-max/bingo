@@ -128,7 +128,6 @@ export class BodyComponent implements OnInit {
             alert(event);
             this.gameStarted = false;
         }, 10);
-
     }
 
 }

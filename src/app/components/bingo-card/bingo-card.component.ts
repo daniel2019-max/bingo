@@ -49,7 +49,7 @@ export class BingoCardComponent implements OnInit {
             }
         }
         if (this.contentCard.trappedNumber === 24) {
-            this.message.emit('El ganador es ' + this.contentCard.user);
+            this.message.emit('El ganador es ' + this.contentCard.user + ' ' + this.contentCard.cardNumber);
         }
     }
 
